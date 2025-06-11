@@ -55,8 +55,8 @@
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) {
-            console.warn("⚠️ Button is hidden or overlapped. Possible Clickjacking!");
-            alert("⚠️ Button is hidden or overlapped. Possible Clickjacking!");
+            console.warn(" Button is hidden or overlapped. Possible Clickjacking!");
+            alert(" Button is hidden or overlapped. Possible Clickjacking!");
           }
         });
       }, {
