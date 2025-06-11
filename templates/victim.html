@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Victim Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <h1>Victim Page</h1>
+  <button id="realButton" onclick="alert('You clicked me!')">Click Me</button>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('#realButton');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            console.warn("⚠️ Button is hidden or overlapped. Possible Clickjacking!");
+            alert("⚠️ Button is hidden or overlapped. Possible Clickjacking!");
+          }
+        });
+      }, {
+        threshold: 1.0 // Only alert when the whole button is not visible
+      });
+
+      observer.observe(btn);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attacker Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1e1e2f;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #f44336aa;
+    }
+
+    iframe {
+      width: 420px;
+      height: 100px; /* Adjusted height */
+      opacity: 0.1;
+      border-radius: 12px;
+      border: 2px solid #f44336cc;
+      box-shadow: 0 0 30px #f44336aa;
+      position: absolute;
+      top: 240px; /* Adjust to match where the real button is */
+      left: calc(50% - 210px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #fakeButton {
+      position: absolute;
+      top: 240px; /* Same as iframe */
+      left: calc(50% - 210px);
+      width: 420px;
+      height: 100px; /* Match iframe */
+      background: linear-gradient(135deg, #f44336, #d32f2f);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 1.6rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 15px #d32f2faa;
+      transition: background 0.3s ease, transform 0.15s ease;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    #fakeButton:hover {
+      background: linear-gradient(135deg, #d32f2f, #b71c1c);
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px #b71c1ccc;
+    }
+
+    #fakeButton:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px #b71c1ccc;
+    }
+
+    footer {
+      margin-top: 400px;
+      font-size: 0.85rem;
+      color: #888;
+      text-align: center;
+      max-width: 420px;
+    }
+  </style>
+</head>
+<body>
+  <h1>This is not what you think</h1>
+
+  <!-- 👇 iframe loads the victim, partially visible and click-through -->
+  <iframe src="/" title="Victim Page"></iframe>
+
+  <!-- 👇 Fake button exactly covers the victim button -->
+  <button id="fakeButton" onclick="alert('You just got clickjacked!'); return false;">Click Here to Win!</button>
+
+  <footer>Try clicking the red button — but watch out for surprises!</footer>
+</body>
+</html>
