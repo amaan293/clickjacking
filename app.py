@@ -6,9 +6,9 @@ app = Flask(__name__)
 def victim():
     response = make_response(render_template("victim.html"))
     # Modern clickjacking defense: only allow framing by same origin
-    #response.headers["Content-Security-Policy"] = "frame-ancestors 'self'"
+    response.headers["Content-Security-Policy"] = "frame-ancestors 'self'"
     # Backup header for older browsers
-    #response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-Frame-Options"] = "DENY"
     return response
 
 @app.route("/attacker")
